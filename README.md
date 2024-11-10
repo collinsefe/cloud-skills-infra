@@ -15,14 +15,13 @@ The requirements are as follows:
     * CIDR block of `10.0.0.0/16`.
 * Create a Subnet within that VPC with:  +++++
     * CIDR block of `10.0.10.0/24`,
-    * Availability zone: `eu-west-2`.
+    * Availability zone: `eu-west-2a`.
 * Within your VPC, create an EIP with a `private` address of:  +++++++
     * `10.0.10.250`, ***
     * attach this Elastic IP to your instance.
 * Create an EBS volume and attach it to the instance using:  ++++++++
     * device name `/dev/sdc`,
     * Availability zone: `eu-west-2a`. ***
-* Important: when it is possible, please use the `availability_zone` = `eu-central-1`. ***   ++++++
+* Important: when it is possible, please use the `availability_zone` = `eu-west-2`. ***   ++++++
 * Your code does not use any existing modules and is only composed of plain resources provided by the official AWS Terraform provider.
 
-Good luck and have fun!

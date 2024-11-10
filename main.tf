@@ -1,6 +1,6 @@
 resource "aws_instance" "this" {
   ami           = "ami-02f617729751b375a" #
-  # count         = 1
+  count         = 1
   instance_type = "t2.micro"
 
   tags = {

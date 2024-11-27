@@ -2,7 +2,7 @@ https://docs.aws.amazon.com/cli/v1/userguide/cli-services-ec2-instances.html
 
 ** Launch your instance
 
-aws ec2 run-instances --image-id ami-0be656e75e69af1a9 --count 1 --instance-type t2.micro --key-name collins-key --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
+aws ec2 run-instances --image-id ami-0c76bd4bd302b30ec --count 1 --instance-type t2.micro --key-name collins-key --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
 
 ** Add a block device to your instance
 --block-device-mappings "[{\"DeviceName\":\"/dev/sdf\",\"Ebs\":{\"VolumeSize\":20,\"DeleteOnTermination\":false}}]"

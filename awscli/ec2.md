@@ -11,7 +11,7 @@ aws ec2 run-instances --image-id ami-0c76bd4bd302b30ec --count 1 --instance-type
 
 ** Add a tag to your instance:
 
-aws ec2 create-tags --resources i-5203422c --tags Key=Name,Value=MyInstance
+aws ec2 create-tags --resources i-077540d0ff90f3af9 --tags Key=Name,Value=collins-instance Key=Dept,Value=DevOps
 
 ** List your instances:
 

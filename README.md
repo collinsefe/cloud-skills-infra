@@ -24,4 +24,3 @@ The requirements are as follows:
     * Availability zone: `eu-west-2a`. ***
 * Important: when it is possible, please use the `availability_zone` = `eu-west-2`. ***   ++++++
 * Your code does not use any existing modules and is only composed of plain resources provided by the official AWS Terraform provider.
-

@@ -27,6 +27,7 @@ resource "aws_subnet" "my_subnet" {
 }
 
 4. Create a network interface with private IP
+
 resource "aws_network_interface" "foo" {
   subnet_id   = aws_subnet.my_subnet.id
   private_ips = ["172.16.10.100"]

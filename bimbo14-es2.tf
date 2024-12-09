@@ -8,4 +8,4 @@ resource "aws_instance" "bar" {
               Name : "Bimbo Instance"
                 }
               }
-/bin/bash: line 1: qw:: command not found
+

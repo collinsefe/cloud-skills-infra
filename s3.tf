@@ -6,3 +6,11 @@ resource "aws_s3_bucket" "drink" {
     Environment = "Dev"
   }
 }
+resource "aws_s3_bucket" "teni" {
+  bucket = "tenny-terraform-s3bucket"
+
+  tags = {
+    Name        = "tenny bucket"
+    Environment = "Dev"
+  }
+}

@@ -7,7 +7,7 @@ resource "aws_instance" "this" {
 }
 
 resource "aws_instance" "bar" {
-  ami           = "ami-02f617729751b375a" 
+  ami           = "ami-02f617729751b375a"
   instance_type = "t2.micro"
 
   tags = {
@@ -20,5 +20,13 @@ resource "aws_instance" "kwamdeen" {
   instance_type = "t2.micro"
   tags = {
     Name : "Kwamdeen Ayinla"
+  }
+}
+
+resource "aws_instance" "bar" {
+  ami           = "ami-02f617729751b375a"
+  instance_type = "t2.micro"
+  tags = {
+    Name : "Bimbo Instance"
   }
 }

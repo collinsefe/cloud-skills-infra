@@ -21,6 +21,15 @@ pipeline {
             }
         }
 
+        stage('Initialize Terraform') {
+            steps {
+                // Initialize the Terraform project
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
+                    sh 'terraform init -reconfigure'
+                }
+            }
+        }
+
          stage('Format Infrastructure') {
             steps {
                 // Generate and review the plan for deploying resources
@@ -35,15 +44,6 @@ pipeline {
                 // Generate and review the plan for deploying resources
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
                     sh 'terraform validate'
-                }
-            }
-        }
-
-        stage('Initialize Terraform') {
-            steps {
-                // Initialize the Terraform project
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
-                    sh 'terraform init -reconfigure'
                 }
             }
         }

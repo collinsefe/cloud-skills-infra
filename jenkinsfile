@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-         stage('Format Infrastructure') {
+         stage('Format Terraform') {
             steps {
                 // Generate and review the plan for deploying resources
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
@@ -39,7 +39,7 @@ pipeline {
             }
         }
 
-         stage('Validate Infrastructure') {
+         stage('Validate Terraform') {
             steps {
                 // Generate and review the plan for deploying resources
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
@@ -48,7 +48,7 @@ pipeline {
             }
         }
 
-        stage('Plan Infrastructure') {
+        stage('Plan Terraform') {
             steps {
                 // Generate and review the plan for deploying resources
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
@@ -57,7 +57,7 @@ pipeline {
             }
         }
 
-        stage('Apply Infrastructure') {
+        stage('Apply Terraform') {
             steps {
                 // Apply the Terraform plan
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
@@ -70,20 +70,6 @@ pipeline {
             steps {
                 echo "Terraform deployment complete."
             }
-        }
-    }
-
-
-    post {
-        always {
-            echo 'Cleaning up workspace...'
-            deleteDir()  // Clean up workspace after build
-        }
-        success {
-            echo 'Infrastructure has been successfully deployed!'
-        }
-        failure {
-            echo 'Deployment failed. Please check the logs for more details.'
         }
     }
 }

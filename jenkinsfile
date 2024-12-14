@@ -1,0 +1,88 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_CREDENTIALS = 'aws-credentials-id'  
+    }
+
+    stages {
+
+        stage('Install Terraform') {
+            steps {
+                sh """
+                # Download and install Terraform if not available
+                if ! command -v terraform &> /dev/null; then
+                    wget https://releases.hashicorp.com/terraform/1.3.0/terraform_1.3.0_linux_amd64.zip
+                    unzip terraform_1.3.0_linux_amd64.zip
+                    sudo mv terraform /usr/local/bin/
+                fi
+                terraform -version
+                """
+            }
+        }
+
+         stage('Format Infrastructure') {
+            steps {
+                // Generate and review the plan for deploying resources
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
+                    sh 'terraform fmt'
+                }
+            }
+        }
+
+         stage('Validate Infrastructure') {
+            steps {
+                // Generate and review the plan for deploying resources
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
+                    sh 'terraform validate'
+                }
+            }
+        }
+
+        stage('Initialize Terraform') {
+            steps {
+                // Initialize the Terraform project
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
+                    sh 'terraform init -reconfigure'
+                }
+            }
+        }
+
+        stage('Plan Infrastructure') {
+            steps {
+                // Generate and review the plan for deploying resources
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+
+        stage('Apply Infrastructure') {
+            steps {
+                // Apply the Terraform plan
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
+
+        stage('Post Deployment Steps') {
+            steps {
+                echo "Terraform deployment complete."
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up workspace...'
+            deleteDir()  // Clean up workspace after build
+        }
+        success {
+            echo 'Infrastructure has been successfully deployed!'
+        }
+        failure {
+            echo 'Deployment failed. Please check the logs for more details.'
+        }
+    }
+}

@@ -22,7 +22,7 @@ permissions:
   
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Our Terraform Pipeline'
     runs-on: ubuntu-latest
 
     defaults:
@@ -45,21 +45,14 @@ jobs:
         role-session-name: github-actions-user
         aws-region: ${{ env.AWS_REGION }}
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
 
-    # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
 
-    # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
-
-    # - name: Terraform Apply
-    #   if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-    #   run: terraform apply -auto-approve input=false
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event.head_commit.message != 'Merge pull request'

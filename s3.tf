@@ -25,5 +25,14 @@ resource "aws_s3_bucket" "dev-2" {
   }
 }
 
+resource "aws_s3_bucket" "dev-2" {
+  bucket = "cloudskills-collins-2-s3-bucket"
+
+  tags = {
+    Name        = "Collins bucket"
+    Environment = "Dev"
+  }
+}
+
 
 

@@ -5,5 +5,3 @@ resource "aws_instance" "this" {
     Name : "Project Instance DO-NOT-DELETE"
   }
 }
-
-

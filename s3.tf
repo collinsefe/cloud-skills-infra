@@ -25,5 +25,17 @@ resource "aws_s3_bucket" "dev-2" {
   }
 }
 
+resource "aws_s3_bucket" "kwamdeen" {
+  bucket = "cloudskills-developer-2-s3-bucket-kwamdeen"
+
+  tags = {
+    Name        = "Developer kwamdeen bucket"
+    Environment = "Dev"
+  }
+}
+
+
+
+
 
 

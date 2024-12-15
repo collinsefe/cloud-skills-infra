@@ -38,6 +38,15 @@ resource "aws_instance" "kwamdeen" {
   }
 }
 
+resource "aws_instance" "tenny" {
+  ami           = "ami-02f617729751b375a"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "Developer tennie"
+  }
+}
+
+
 
 
 

@@ -44,6 +44,14 @@ resource "aws_s3_bucket" "fish" {
   }
 }
 
+resource "aws_s3_bucket" "tenny" {
+  bucket = "cloudskills-teni-s3-bucket"
+
+  tags = {
+    Name        = "Developer teni bucket"
+    Environment = "Dev"
+  }
+}
 
 
 

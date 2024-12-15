@@ -25,6 +25,16 @@ resource "aws_s3_bucket" "dev-2" {
   }
 }
 
+resource "aws_s3_bucket" "kwamdeen" {
+  bucket = "cloudskills-developer-2-s3-bucket-kwamdeen"
+
+  tags = {
+    Name        = "Developer kwamdeen bucket"
+    Environment = "Dev"
+  }
+}
+
+
 resource "aws_s3_bucket" "fish" {
   bucket = "cloudskills-collins-2-s3-bucket"
 
@@ -33,6 +43,7 @@ resource "aws_s3_bucket" "fish" {
     Environment = "Dev"
   }
 }
+
 
 
 

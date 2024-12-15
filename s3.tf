@@ -25,7 +25,7 @@ resource "aws_s3_bucket" "dev-2" {
   }
 }
 
-resource "aws_s3_bucket" "dev-2" {
+resource "aws_s3_bucket" "fish" {
   bucket = "cloudskills-collins-2-s3-bucket"
 
   tags = {

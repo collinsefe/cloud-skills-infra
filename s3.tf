@@ -30,8 +30,10 @@ resource "aws_s3_bucket" "kwamdeen" {
 
   tags = {
     Name        = "Developer kwamdeen bucket"
+    Environment = "Dev"
   }
 }
+
 
 resource "aws_s3_bucket" "fish" {
   bucket = "cloudskills-collins-2-s3-bucket"

@@ -16,12 +16,12 @@ resource "aws_instance" "bar" {
 }
 
 resource "aws_instance" "kwamdeen" {
-  ami           =     "ami-02f617729751b375a"
+  ami           = "ami-02f617729751b375a"
   instance_type = "t2.micro"
   tags = {
-      Name : "Kwamdeen Ayinla" 
+    Name : "Kwamdeen Ayinla"
 
-      
+
   }
 }
 

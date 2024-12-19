@@ -57,11 +57,3 @@ resource "aws_instance" "that" {
   }
 }
 
-
-
-
-
-
-
-
-

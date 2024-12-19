@@ -46,16 +46,16 @@
 #   }
 # }
 
- resource "aws_s3_bucket" "Bimbo" {
-   bucket = "cloudskills-bimbo-s3-bucket"
+resource "aws_s3_bucket" "Bimbo" {
+  bucket = "cloudskills-bimbo-s3-bucket"
 
-   tags = {
-     Name        = "Developer bimbo bucket"
-     Environment = "Dev"
-   }
- }
+  tags = {
+    Name        = "Developer bimbo bucket"
+    Environment = "Dev"
+  }
+}
 
- 
+
 
 
 

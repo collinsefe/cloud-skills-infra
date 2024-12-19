@@ -46,22 +46,16 @@
 #   }
 # }
 
-# resource "aws_s3_bucket" "tenny" {
-#   bucket = "cloudskills-teni-s3-bucket"
+ resource "aws_s3_bucket" "Bimbo" {
+   bucket = "cloudskills-bimbo-s3-bucket"
 
-#   tags = {
-#     Name        = "Developer teni bucket"
-#     Environment = "Dev"
-#   }
-# }
-
- resource "aws_s3_bucket" "dev-4" {
-   bucket = "cloudskills-Bimbo-2-s3-bucket"
    tags = {
-     Name        = "Developer Bimbo bucket"
+     Name        = "Developer bimbo bucket"
      Environment = "Dev"
-  }
+   }
  }
+
+ 
 
 
 

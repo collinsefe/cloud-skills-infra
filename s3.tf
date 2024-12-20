@@ -1,13 +1,13 @@
 # This file contains the configuration for creating EC2 instances
 
-resource "aws_s3_bucket" "foo" {
-  bucket = "cloudskills-team-terraform-s3-bucket"
+# resource "aws_s3_bucket" "foo" {
+#   bucket = "cloudskills-team-terraform-s3-bucket"
 
-  tags = {
-    Name        = "Cloudskills bucket"
-    Environment = "Dev"
-  }
-}
+#   tags = {
+#     Name        = "Cloudskills bucket"
+#     Environment = "Dev"
+#   }
+# }
 
 # resource "aws_s3_bucket" "dev-1" {
 #   bucket = "cloudskills-developer-1-s3-bucket"
@@ -46,11 +46,11 @@ resource "aws_s3_bucket" "foo" {
 #   }
 # }
 
-resource "aws_s3_bucket" "Bimbo" {
-  bucket = "cloudskills-bimbo-s3-bucket"
+# resource "aws_s3_bucket" "Bimbo" {
+#   bucket = "cloudskills-bimbo-s3-bucket"
 
-  tags = {
-    Name        = "Developer bimbo bucket"
-    Environment = "Dev"
-  }
-}
+#   tags = {
+#     Name        = "Developer bimbo bucket"
+#     Environment = "Dev"
+#   }
+# }

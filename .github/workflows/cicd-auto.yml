@@ -8,9 +8,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 env:
   BUCKET_NAME : "terraform-tfstate-bucket-01122024"
   AWS_REGION : "eu-west-2"

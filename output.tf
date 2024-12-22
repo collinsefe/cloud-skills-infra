@@ -1,5 +1,5 @@
-# output "eip_address" {
-#   description = "elastic ip address for ec2 instance"
-#   value       = aws_eip.this.address
+output "ec2_end_point" {
+  description = "endpoint for ec2 instance"
+  value       = aws_instance.web.public_ip
 
-# }
+}

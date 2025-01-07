@@ -55,3 +55,13 @@ resource "aws_s3_bucket" "foo" {
 # #     Environment = "Dev"
 # #   }
 # # }
+
+
+# # resource "aws_s3_bucket" "Teni" {
+# #   bucket = "cloudskills-Teni-s3-bucket"
+
+# #   tags = {
+# #     Name        = "Developer Teni bucket"
+# #     Environment = "Dev"
+# #   }
+# # }

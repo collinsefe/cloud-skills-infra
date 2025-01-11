@@ -1,0 +1,33 @@
+- name: This is First Play
+  hosts: AllTheServers
+  tasks:
+   - name: Ping Task To ALL Servers
+     ansible.builtin.ping:
+
+- name: This is Second Play
+  hosts: nginx
+  tasks:
+   - name: Print Task
+     ansible.builtin.debug:
+       msg: Hello World!!!
+
+- name: Ansible Install Applications
+  hosts: AllTheServers
+  tasks:
+   - name: Install JAVA
+     become: true
+     yum:
+       name: java
+       state: present
+
+   - name: Install GIT
+     become: true
+     yum:
+       name: git
+       state: present
+
+   - name: Install PYTHON
+     become: true
+     yum:
+       name: python
+       state: present

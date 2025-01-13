@@ -59,5 +59,7 @@ jobs:
       # Run your Ansible playbook
     - name: Run Ansible Playbook
       run: |
-        cd /tmp/ansible-configuration
-        ansible-playbook -i inventory.ini playbook.yaml 
+        ansible --version
+        echo "Happy Days Are Here Again!!!"
+        # cd /tmp/ansible-configuration
+        # ansible-playbook -i inventory.ini playbook.yaml 

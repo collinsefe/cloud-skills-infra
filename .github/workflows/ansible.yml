@@ -19,7 +19,7 @@ permissions:
   
 jobs:
   ansible:
-    name: 'Ansible Pipeline'
+    name: 'Updated Ansible Pipeline'
     runs-on: ubuntu-latest
 
     defaults:

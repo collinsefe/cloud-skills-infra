@@ -6,7 +6,6 @@ resource "aws_instance" "ansible" {
   user_data                   = file("tools/ansible_install.sh")
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web.id]
-
   tags = {
     Name : "ansible-control-node"
   }
@@ -17,7 +16,6 @@ resource "aws_instance" "java" {
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web.id]
-
   tags = {
     Name : "app-server"
   }
@@ -28,7 +26,6 @@ resource "aws_instance" "redis" {
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web.id]
-
   tags = {
     Name : "db-server"
   }

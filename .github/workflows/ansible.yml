@@ -1,4 +1,4 @@
-name: 'CICD Automated Pipeline'
+name: 'Ansible Pipeline'
 
 # Controls when the workflow will run
 on:

@@ -15,7 +15,7 @@ resource "aws_instance" "ansible" {
   connection {
     type        = "ssh"
     user        = "ec2-user"
-    private_key = file("/Users/collinsorighose/.ssh/ansible.pem")
+    private_key = aws_key_pair.this.id
     host        = aws_instance.ansible.public_ip
     port        = 22
   }

@@ -1,33 +1,34 @@
-- name: This is First Play
+---
+- name: Install Required Applications On New Servers
   hosts: AllTheServers
   tasks:
-   - name: Ping Task To ALL Servers
-     ansible.builtin.ping:
-
-- name: This is Second Play
-  hosts: nginx
-  tasks:
-   - name: Print Task
-     ansible.builtin.debug:
-       msg: Hello World!!!
-
-- name: Ansible Install Applications
-  hosts: AllTheServers
-  tasks:
-   - name: Install JAVA
+   - name: Install JAVA Application
      become: true
      yum:
        name: java
        state: present
 
-   - name: Install GIT
+   - name: Install GIT Application
      become: true
      yum:
        name: git
        state: present
 
-   - name: Install PYTHON
+   - name: Install PYTHON Application
      become: true
      yum:
        name: python
        state: present
+
+- name: Set up Webservers
+  hosts: webservers
+  tasks:
+  - name: Ensure NGINX is installed
+    become: true
+    yum:
+      name: nginx
+      state: present
+
+  - name: Ensure that NGINX service is started
+    become: true
+    service:

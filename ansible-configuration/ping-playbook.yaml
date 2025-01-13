@@ -1,0 +1,5 @@
+- name: This is My First Play
+  hosts: AllTheServers
+  tasks:
+   - name: Ping Task To ALL Servers
+     ansible.builtin.ping:

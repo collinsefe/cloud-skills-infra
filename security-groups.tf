@@ -1,5 +1,5 @@
 resource "aws_security_group" "web" {
-  name        = "web-server-security-group"
+  name        = "cloudskills-security-group"
   description = "Allows Port SSH and HTTP Traffic"
 
   vpc_id = aws_vpc.main.id

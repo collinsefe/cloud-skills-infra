@@ -6,6 +6,19 @@ resource "aws_instance" "ansible" {
   user_data                   = file("tools/ansible_install.sh")
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.fix.id]
+  key_name                    = "ansible"
+  provisioner "file" {
+    source      = "ansible-configuration"
+    destination = "ansible"
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = aws_key_pair.this.id
+    host        = aws_instance.ansible.public_ip
+    port        = 22
+  }
   tags = {
     Name : "ansible-control-node"
   }
@@ -41,4 +54,3 @@ resource "aws_instance" "nginx" {
     Name : "web-server"
   }
 }
-

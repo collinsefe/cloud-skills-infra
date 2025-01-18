@@ -1,0 +1,65 @@
+name: 'Ansible Pipeline'
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  BUCKET_NAME : "terraform-tfstate-bucket-01122024"
+  AWS_REGION : "eu-west-2"
+  ROLE-TO-ASSUME : "arn:aws:iam::692859905059:role/github-assume-role"
+
+permissions:
+  id-token: write   
+  contents: read 
+  
+jobs:
+  ansible:
+    name: 'Updated Ansible Pipeline'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Setup Python (Ansible depends on Python)
+    - name: Set up Python 3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    # Install Ansible
+    - name: Install Ansible
+      run: |
+        python -m pip install --upgrade pip
+        pip install ansible
+
+    # Install any required dependencies (e.g., Python libraries for Ansible)
+    # - name: Install additional dependencies
+    #   run: |
+    #     pip install -r requirements.txt  # If you have any additional requirements
+
+      # Set up your inventory or environment (e.g., AWS credentials, SSH keys)
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+      with:
+        role-to-assume: ${{ env.ROLE-TO-ASSUME }}
+        role-session-name: github-actions-user
+        aws-region: ${{ env.AWS_REGION }}
+
+      # Run your Ansible playbook
+    - name: Run Ansible Playbook
+      run: |
+        ansible --version
+        echo "Happy Days Are Here Again!!!"
+        # cd /tmp/ansible-configuration
+        # ansible-playbook -i inventory.ini playbook.yaml 

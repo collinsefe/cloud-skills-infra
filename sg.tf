@@ -6,15 +6,14 @@ resource "aws_default_vpc" "this" {
   }
 }
 
-
-resource "aws_security_group" "fix" {
-  name        = "my-fix-security-group"
+resource "aws_security_group" "web" {
+  name        = "my-web-security-group"
   description = "Allows Port SSH and HTTP Traffic"
 
   vpc_id = aws_default_vpc.this.id
 
   tags = {
-    Name = "Jenkins Security Group"
+    Name = "My Web Security Group"
   }
 
   ingress {
@@ -29,14 +28,6 @@ resource "aws_security_group" "fix" {
     description = "Allow HTTPS Traffic"
     from_port   = 443
     to_port     = 443
-    protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "Allow 8080 Traffic for Jenkins Server"
-    from_port   = 8080
-    to_port     = 8080
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }

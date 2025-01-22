@@ -23,7 +23,6 @@
 #     Name : "ansible-control-node"
 #   }
 # }
-
 resource "aws_instance" "this" {
   ami                         = "ami-0a89c0e1fe86ef74e"
   instance_type               = "t2.micro"
@@ -33,3 +32,17 @@ resource "aws_instance" "this" {
     Name : "collins server"
   }
 }
+
+resource "aws_instance" "kwam" {
+  ami                         = "ami-0a89c0e1fe86ef74e"
+  instance_type               = "t2.micro"
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.web.id]
+  tags = {
+    Name : "Kwam donker server"
+  }
+  key_name = "kwam-donker"
+}
+
+
+

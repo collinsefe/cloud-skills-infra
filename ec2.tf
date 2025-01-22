@@ -41,7 +41,7 @@ resource "aws_instance" "kwam" {
   tags = {
     Name : "Kwam donker server"
   }
-  key_name = "kwam-donker" 
+  key_name = "kwam-donker"
 }
 
 

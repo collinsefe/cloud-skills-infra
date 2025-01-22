@@ -1,0 +1,15 @@
+# Example CODEOWNERS file
+
+# Specify owners for the entire repository
+*       @global-owner1 
+
+# Specify owners for specific directories
+/awscli/  @docs-team
+/ansible-configuration/   @admin-team @power-team
+
+# Specify owners for specific file types
+*.js    @js-developers
+*.css   @css-designers
+
+# Specify owners for a specific file
+README.md @maintainer

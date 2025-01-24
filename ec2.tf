@@ -34,7 +34,7 @@ resource "aws_instance" "this" {
   }
 }
 
-resource "aws_instance" "this" {
+resource "aws_instance" "teni" {
   ami                         = "ami-0a89c0e1fe86ef74e"
   instance_type               = "t2.micro"
   associate_public_ip_address = true

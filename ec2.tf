@@ -35,11 +35,22 @@ resource "aws_instance" "this" {
 }
 
 
-
 resource "aws_instance" "abimbola" {
   ami           = "ami-02f617729751b375a"
   instance_type = "t2.micro"
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.web.id]
   tags = {
     Name : "abimbola docker demo"
+  }
+}
+
+resource "aws_instance" "teni" {
+  ami                         = "ami-0a89c0e1fe86ef74e"
+  instance_type               = "t2.micro"
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.web.id]
+  tags = {
+    Name : "tennie server"
   }
 }

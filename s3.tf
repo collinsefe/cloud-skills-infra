@@ -13,15 +13,23 @@ resource "aws_s3_bucket" "foo" {
     target_bucket = aws_s3_bucket.logging.id
     target_prefix = "logs/"
   }
-  versioning {
-    enabled = true
-  }
   tags = {
     Name        = "Cloudskills bucket - DO-NOT-DELETE"
     Environment = "Dev"
   }
 }
 
+resource "aws_s3_bucket_acl" "foo" {
+  bucket = aws_s3_bucket.foo.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "foo" {
+  bucket = aws_s3_bucket.foo.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 
 
 resource "aws_s3_bucket" "logging" {
@@ -34,12 +42,21 @@ resource "aws_s3_bucket" "logging" {
     }
   }
 
-  versioning {
-    enabled = true
-  }
   tags = {
     Name        = "cloudskills-logging-bucket-05022025"
     Environment = "demo"
+  }
+}
+
+resource "aws_s3_bucket_acl" "logging" {
+  bucket = aws_s3_bucket.logging.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "logging" {
+  bucket = aws_s3_bucket.logging.id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
 

@@ -19,11 +19,6 @@ resource "aws_s3_bucket" "foo" {
   }
 }
 
-resource "aws_s3_bucket_acl" "foo" {
-  bucket = aws_s3_bucket.foo.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_versioning" "foo" {
   bucket = aws_s3_bucket.foo.id
   versioning_configuration {
@@ -48,10 +43,6 @@ resource "aws_s3_bucket" "logging" {
   }
 }
 
-resource "aws_s3_bucket_acl" "logging" {
-  bucket = aws_s3_bucket.logging.id
-  acl    = "private"
-}
 
 resource "aws_s3_bucket_versioning" "logging" {
   bucket = aws_s3_bucket.logging.id

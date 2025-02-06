@@ -34,9 +34,9 @@ resource "aws_s3_bucket" "logging" {
       }
     }
   }
-  logging {
-    target_bucket = aws_s3_bucket.logging.id
-  }
+  # logging {
+  #   target_bucket = aws_s3_bucket.logging.id
+  # }
   versioning {
     enabled = true
   }

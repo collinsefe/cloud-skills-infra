@@ -1,7 +1,7 @@
 # # This file contains the configuration for creating EC2 instances
 
 resource "aws_s3_bucket" "foo" {
-  bucket = "cloudskills-team-terraform-s3-bucket"
+  bucket        = "cloudskills-team-terraform-s3-bucket"
   force_destroy = true
   # server_side_encryption_configuration {
   #   rule {
@@ -70,3 +70,4 @@ resource "aws_s3_bucket_public_access_block" "foo" {
 #   block_public_policy     = true
 #   block_public_acls       = true
 # }
+

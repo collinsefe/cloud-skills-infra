@@ -1,4 +1,4 @@
-name: 'Terraform Pipeline'
+name: 'Terraform Cross Account Pipeline'
 
 # Controls when the workflow will run
 on:
@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-   workflow_dispatch:
+  workflow_dispatch:
 
 env:
   BUCKET_NAME : "terraform-tfstate-bucket-01122024"
@@ -24,7 +24,7 @@ permissions:
   
 jobs:
   terraform:
-    name: 'Updated Terraform Pipeline'
+    name: 'Cross Account Terraform Pipeline'
     runs-on: ubuntu-latest
 
     defaults:

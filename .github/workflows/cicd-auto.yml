@@ -12,6 +12,9 @@ env:
   BUCKET_NAME : "terraform-tfstate-bucket-01122024"
   AWS_REGION : "eu-west-2"
   ROLE-TO-ASSUME : "arn:aws:iam::692859905059:role/github-assume-role"
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_CA }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_CA }}
+  TF_STATE_BUCKET: ${{ secrets.TF_STATE_BUCKET_CA}}
 
 permissions:
   id-token: write   
@@ -43,7 +46,7 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend-config="bucket=$TF_STATE_BUCKET" 
 
     - name: Terraform Format
       run: terraform fmt -check

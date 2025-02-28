@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
   workflow_dispatch:
-
+  
 env:
   BUCKET_NAME : "terraform-tfstate-bucket-01122024"
   AWS_REGION : "eu-west-2"
@@ -24,7 +24,7 @@ permissions:
   
 jobs:
   terraform:
-    name: 'Cross Account Terraform Pipeline'
+    name: 'Cross Account Terraform Pipeline Workflow'
     runs-on: ubuntu-latest
 
     defaults:

@@ -1,7 +1,7 @@
 # # This file contains the configuration for creating EC2 instances
 
 resource "aws_s3_bucket" "foo" {
-  bucket        = "cloudskills-team-terraform-s3-bucket"
+  bucket        = "mupandoproject-terraform-bucket"
   force_destroy = true
   # server_side_encryption_configuration {
   #   rule {

@@ -42,3 +42,17 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+
+
+aws-sam/
+aws-glue/
+commands/
+kubernetes/
+docker**
+rubbish/
+mupando/
+multi-aacounts/
+lambda/
+*s3/**
+asg/

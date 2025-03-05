@@ -2,17 +2,37 @@
 
 resource "aws_instance" "this" {
   ami                         = "ami-0a89c0e1fe86ef74e"
+  count                       = 0
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.main.id]
   subnet_id                   = aws_subnet.public.id
-  user_data                   = file("./user-data.sh")
+#   user_data                   = file("./user-data.sh")
   user_data_replace_on_change = true
-  
-  provisioner "local-exec" {
-    command = "cp -r assets/* /tmp"
+  connection {
+    type     = "ssh"
+    user     = "root"
+    # password = var.root_password
+    host     = self.public_ip
   }
 
+
+
+  provisioner "file" {
+    source      = "assets"
+    destination = "/tmp/assets"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "yum update -y",
+      "yum install -y httpd",
+      "systemctl start httpd",
+      "systemctl enable httpd",
+      "sudo cp /tmp/assets/index.html /var/www/index/index.html",
+      "sudo cp /tmp/assets/index.jpg /var/www/index/index.jpg",
+    ]
+  }
   tags = {
     Name : "mupando web server"
   }

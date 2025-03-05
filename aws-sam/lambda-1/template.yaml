@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  WelcomeLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: WelcomeLambdaFunction
+      Architectures: [x86_64]
+      CodeUri: ./
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.12
+      Timeout: 15
+      MemorySize: 256
+      LoggingConfig:
+        LogFormat: JSON
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: WelcomeApi
+      StageName: prod
+      DefinitionBody:
+        swagger: '2.0'
+        info:
+          title: 'Welcome API'
+          version: '1.0'
+        paths:
+          /welcome:
+            get:
+              summary: "Returns a welcome message"
+              operationId: "getWelcomeMessage"
+              responses:
+                200:
+                  description: "A simple welcome message"
+                  schema:
+                    type: string

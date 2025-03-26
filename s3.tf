@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "foo" {
 
 resource "aws_s3_bucket" "logs" {
   bucket_prefix = "mupandoprojectlogs-bucket-"
-  force_destroy = true
+  force_destroy = false   
 }
 
 

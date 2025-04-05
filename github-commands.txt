@@ -1,0 +1,24 @@
+# These are the commans we have learnt today
+
+1. git clone
+   e.g. git clone https://github.com/collinsefe/cloud-skills-infra.git
+
+2. git checkout 
+   e.g. git checkout -b april-2024, git checkout main
+
+3. git add 
+   e.g. git add new-file.txt
+
+4. git commit 
+   e.g. git commit -m "create new file"
+
+5. git status
+
+6. git push 
+   e.g. git push origin april-2024
+
+7. git pull
+   
+8. git log
+
+9. git diff

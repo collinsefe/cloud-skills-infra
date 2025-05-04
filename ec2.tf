@@ -13,6 +13,7 @@ resource "aws_instance" "this" {
   connection {
     type = "ssh"
     user = "root"
+    # password = var.root_password
     host = self.public_ip
   }
 

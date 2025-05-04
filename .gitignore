@@ -56,3 +56,5 @@ multi-aacounts/
 lambda/
 *s3/**
 asg/
+no-upload/
+mupando-aws-codepipeline/

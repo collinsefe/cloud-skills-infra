@@ -1,5 +1,7 @@
+# # # https://visualsubnetcalc.com/index.html?c=1N4IgbiBcIEwgNCARlEBGAnDAdGgbABzYAMJA9PgiALaoCCA6gMpUDOUoxA5hyMQBa9iASyEArXgDtUVAMYyAvojQTIoadDmKl6UWtir1MxPM06AzIZAaQWswp1pB+mHtAAWKzbu2dAVi9jEFNfCzcQPEDNE0VEAHYo2xj7BwcgA
+
 resource "aws_vpc" "main" {
-  cidr_block = "192.168.0.0/16"
+  cidr_block = "192.168.0.0/19"
 
   tags = {
     Name = "mupando-project-vpc"
@@ -8,7 +10,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "192.168.192.0/18"
+  cidr_block        = "192.168.0.0/21"
   availability_zone = "eu-west-2a"
 
   tags = {
@@ -19,7 +21,7 @@ resource "aws_subnet" "public" {
 
 resource "aws_subnet" "foo" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "192.168.64.0/18"
+  cidr_block        = "192.168.16.0/21"
   availability_zone = "eu-west-2b"
 
   tags = {
@@ -30,7 +32,7 @@ resource "aws_subnet" "foo" {
 
 resource "aws_subnet" "bar" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "192.168.128.0/18"
+  cidr_block        = "192.168.24.0/21"
   availability_zone = "eu-west-2c"
 
   tags = {
@@ -81,3 +83,35 @@ resource "aws_route_table_association" "public_assoc_3" {
 }
 
 
+#https://visualsubnetcalc.com/index.html?c=1N4IgbiBcIEwgNCARlEBGAnDAdGgbABzYAMJA9JgiALaoCCA6gMpUDOUoxAVhyMQNa9iAGyG1IwAL6I04qdPSiJsOQoDMqyQrSDlMJaAAsckADtUVAMYWFAVhPnoVm+oMg8Di4mtOFAdk8nbxctLSA
+
+data "aws_availability_zones" "available" {}
+
+
+
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.1.2"
+
+  name = "gitlab-runners-vpc"
+
+  cidr = "192.168.0.0/19"
+  azs  = slice(data.aws_availability_zones.available.names, 0, 3)
+
+  private_subnets = ["192.168.0.0/22", "192.168.4.0/22", "192.168.8.0/22"]
+  public_subnets  = ["192.168.12.0/22", "192.168.16.0/22", "192.168.20.0/22"]
+
+  enable_nat_gateway   = false
+  single_nat_gateway   = false
+  enable_dns_hostnames = true
+
+  public_subnet_tags = {
+    "Name"    = "Gitlab-VPC"
+    "Project" = "gitlab-runners"
+  }
+
+  private_subnet_tags = {
+    "Name"    = "Gitlab-VPC"
+    "Project" = "gitlab-runners"
+  }
+}

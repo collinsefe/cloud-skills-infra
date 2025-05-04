@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-source .env
+. .env
 
 sudo apt update -y
 sudo apt install docker.io -y
@@ -18,5 +17,7 @@ sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/
 sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
 sudo gitlab-runner start
 
+# Install and run as a service
+sudo gitlab-runner register --non-interactive --url "https://gitlab.com" --registration-token "abcd" --description "mupando-group-runner" --executor "docker" --docker-image node:latest
 
-sudo gitlab-runner register --non-interactive --url "https://gitlab.com" --registration-token "abcds" --description "aws-docker-second-runner" --executor "docker" --docker-image alpine
+sudo gitlab-runner register --non-interactive --url "https://gitlab.com" --registration-token "abcd" --description "aws-docker-node-runner" --executor "docker" --docker-image node:22-alpine

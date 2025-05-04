@@ -1,10 +1,10 @@
 resource "aws_security_group" "main" {
-  name        = "mupando-security-group"
+  name        = "modules-security-group"
   description = "Allows Port SSH and HTTP Traffic"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.vpc.vpc_id
 
   tags = {
-    Name = "Mupando Security Group"
+    Name = "Modules Security Group"
   }
 
   ingress {
@@ -44,4 +44,3 @@ resource "aws_security_group" "main" {
     # cidr_blocks = [aws_default_vpc.this.cidr_block]
   }
 }
-

@@ -17,6 +17,7 @@ repos:
           - '--args=--only=terraform_naming_convention'
           - '--args=--only=terraform_required_version'
       - id: terraform_validate
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:

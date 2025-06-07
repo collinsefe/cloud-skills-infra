@@ -1,16 +1,8 @@
-
-
-resource "aws_default_vpc" "this" {
-  tags = {
-    Name = "Default VPC"
-  }
-}
-
 resource "aws_security_group" "web" {
   name        = "my-web-security-group"
   description = "Allows Port SSH and HTTP Traffic"
 
-  vpc_id = aws_default_vpc.this.id
+  vpc_id = aws_vpc.main.id
 
   tags = {
     Name = "My Web Security Group"
@@ -22,7 +14,7 @@ resource "aws_security_group" "web" {
     to_port     = 22
     protocol    = "TCP"
     # cidr_blocks = ["0.0.0.0/0"]
-    cidr_blocks = [aws_default_vpc.this.cidr_block]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   ingress {
@@ -31,7 +23,7 @@ resource "aws_security_group" "web" {
     to_port     = 443
     protocol    = "TCP"
     # cidr_blocks = ["0.0.0.0/0"]
-    cidr_blocks = [aws_default_vpc.this.cidr_block]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
 
@@ -41,7 +33,7 @@ resource "aws_security_group" "web" {
     to_port     = 0
     protocol    = "-1"
     # cidr_blocks = ["0.0.0.0/0"]
-    cidr_blocks = [aws_default_vpc.this.cidr_block]
+    cidr_blocks = [aws_vpc.main.cidr_block]
 
   }
 
@@ -52,7 +44,7 @@ resource "aws_security_group" "web" {
     to_port     = 80
     protocol    = "tcp"
     # cidr_blocks = ["0.0.0.0/0"]
-    cidr_blocks = [aws_default_vpc.this.cidr_block]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 }
 

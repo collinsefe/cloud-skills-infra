@@ -2,6 +2,7 @@
 
 resource "aws_instance" "this" {
   ami                         = "ami-0a89c0e1fe86ef74e"
+  count = "5"
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   #   vpc_security_group_ids      = [aws_security_group.web.id]

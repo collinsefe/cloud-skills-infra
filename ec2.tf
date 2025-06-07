@@ -2,11 +2,11 @@
 
 resource "aws_instance" "this" {
   ami                         = "ami-0a89c0e1fe86ef74e"
-  count                       = "5"
+  count                       = "0"
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   #   vpc_security_group_ids      = [aws_security_group.web.id]
-  subnet_id = aws_subnet.sub_a.id
+  subnet_id = aws_subnet.private_a.id
   root_block_device {
     encrypted = true
   }

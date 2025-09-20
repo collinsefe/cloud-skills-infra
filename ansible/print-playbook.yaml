@@ -1,0 +1,6 @@
+- name: This is Second Play
+  hosts: dbservers
+  tasks:
+   - name: Print Task
+     ansible.builtin.debug:
+       msg: Hello World!!!

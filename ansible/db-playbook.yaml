@@ -1,0 +1,13 @@
+- name: Update db servers
+  hosts: dbservers
+  become: true
+  tasks:
+  - name: Ensure postgresql is at the latest version
+    ansible.builtin.yum:
+      name: postgresql12-server
+      state: present
+
+  - name: Ensure that postgresql is started
+    ansible.builtin.service:
+      name: postgresql12-server
+      state: started
